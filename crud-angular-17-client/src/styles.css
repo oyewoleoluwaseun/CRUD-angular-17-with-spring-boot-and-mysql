@@ -1,1 +1,68 @@
-/* You can add global styles to this file, and also import other style files */
+/* styles.css */
+
+/* Set the entire page's background color to light blue */
+body {
+  background-color: #add8e6; /* Light Blue */
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Custom Navbar Color */
+.bg-darkblue {
+  background-color: #003366; /* Dark Blue */
+}
+
+/* Ensure text remains visible against the dark blue background */
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.navbar-dark .navbar-brand {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Increase Navbar Height by Adjusting Padding */
+.navbar {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Hover Effect for Navbar Links */
+.navbar-nav .nav-link:hover {
+  color: #ffffff;
+  transition: color 0.3s;
+}
+
+/* Active Navbar Link Styling */
+.navbar-nav .nav-link.active {
+  font-weight: bold;
+  border-bottom: 2px solid #ffffff;
+}
+
+/* Smooth Transition for Hover Effects */
+.navbar-nav .nav-link {
+  transition: color 0.3s;
+}
+
+/* Responsive Logo Size */
+@media (max-width: 992px) {
+  .navbar-brand img {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-brand img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Footer Styles */
+footer {
+  position: relative;
+  width: 100%;
+  bottom: 0;
+}
