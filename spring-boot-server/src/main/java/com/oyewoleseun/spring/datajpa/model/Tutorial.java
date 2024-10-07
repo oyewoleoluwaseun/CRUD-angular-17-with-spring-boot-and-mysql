@@ -1,4 +1,4 @@
-package com.bezkoder.spring.datajpa.model;
+package com.oyewoleseun.spring.datajpa.model;
 
 import jakarta.persistence.*;
 
