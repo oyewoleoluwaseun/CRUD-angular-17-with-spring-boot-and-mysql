@@ -21,7 +21,7 @@ This is a CRUD (Create, Read, Update, Delete) web application built using Angula
 
 ## Demo
 
-> [Add link here if you have deployed your app]
+> [CRUD Project Website](https://spring-boot-app-kzgt.onrender.com)
 
 ## Features
 
@@ -66,7 +66,7 @@ Before you begin, ensure you have installed the following:
 
 1. Clone the repository:
    ```bash
-   git clone [Add Your Repository Link Here]
+   git clone [https://github.com/oyewoleoluwaseun/CRUD-angular-17-with-spring-boot-and-mysql]
    ```
 
 2. Navigate to the backend directory:
@@ -76,7 +76,7 @@ Before you begin, ensure you have installed the following:
 
 3. Configure MySQL by updating the `application.properties` file located in `src/main/resources/` with your MySQL database credentials:
    ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3306/your_database_name
+   spring.datasource.url=jdbc:mysql://localhost:3306/testdb
    spring.datasource.username=your_username
    spring.datasource.password=your_password
    spring.jpa.hibernate.ddl-auto=update
@@ -104,15 +104,15 @@ Before you begin, ensure you have installed the following:
 
 3. Run the Angular development server:
    ```bash
-   ng serve
+   ng serve --port 8081
    ```
-   The application will be accessible at [http://localhost:4200](http://localhost:4200).
+   The application will be accessible at [http://localhost:8081](http://localhost:8081).
 
 ### Database Setup (MySQL)
 
 1. Create a MySQL database by running the following command in your MySQL CLI or MySQL Workbench:
    ```sql
-   CREATE DATABASE crud_app;
+   CREATE DATABASE testdb;
    ```
 
 2. Ensure that the MySQL server is running on localhost with the appropriate username and password.
@@ -169,11 +169,10 @@ You can host Angular on platforms like Vercel, Netlify, or your custom server. T
 2. Upload the generated `dist/` folder to your hosting platform.
 
 ## Screenshots
+![Post List Page](PostListPage.png)
+![Post Details Page](PostDetailsPage.png)
 
-- Post List Page
-- Post Details Page
 
-> Replace with actual screenshots if available.
 
 ## Contributing
 
