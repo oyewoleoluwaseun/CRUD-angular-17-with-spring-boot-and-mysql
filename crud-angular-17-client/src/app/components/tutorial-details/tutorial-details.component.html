@@ -1,102 +1,138 @@
-@if (viewMode) {
-  @if (currentTutorial.id) {
-    <div class="card mb-3">
-      <div class="card-header">
-        <h4>Tutorial</h4>
-      </div>
-      <div class="card-body">
-        <div class="mb-3">
-          <label><strong>Title:</strong></label> {{ currentTutorial.title }}
+@if (viewMode) { @if (currentTutorial.id) {
+<div class="card mb-3">
+  <div class="card-header">
+    <h4>Tutorial</h4>
+  </div>
+  <div class="card-body">
+    <div class="mb-3">
+      <label><strong>Title:</strong></label> {{ currentTutorial.title }}
+    </div>
+    <div class="mb-3">
+      <label><strong>Description:</strong></label>
+      {{ currentTutorial.description }}
+    </div>
+    <div class="mb-3">
+      <label><strong>Status:</strong></label>
+      {{ currentTutorial.published ? "Published" : "Pending" }}
+    </div>
+
+    <a
+      class="btn btn-warning mt-2"
+      routerLink="/tutorials/{{ currentTutorial.id }}"
+    >
+      Edit
+    </a>
+  </div>
+</div>
+} @else {
+<div class="card border-info mb-3">
+  <div class="card-body">
+    <p class="text-info mb-0">Please click on a Post...</p>
+  </div>
+</div>
+} } @else { @if (currentTutorial.id) {
+<div class="card mb-3">
+  <div class="card-header">
+    <h4>Edit Post</h4>
+  </div>
+  <div class="card-body">
+    <div class="edit-form">
+      <form>
+        <div class="form-group mb-3">
+          <label for="title">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            [(ngModel)]="currentTutorial.title"
+            name="title"
+          />
         </div>
-        <div class="mb-3">
-          <label><strong>Description:</strong></label>
-          {{ currentTutorial.description }}
+        <div class="form-group mb-3">
+          <label for="description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            [(ngModel)]="currentTutorial.description"
+            name="description"
+          />
         </div>
-        <div class="mb-3">
+
+        <div class="form-group mb-3">
           <label><strong>Status:</strong></label>
           {{ currentTutorial.published ? "Published" : "Pending" }}
         </div>
+      </form>
 
-        <a class="btn btn-warning mt-2" routerLink="/tutorials/{{ currentTutorial.id }}">
-          Edit
-        </a>
+      <div class="d-flex flex-wrap gap-2 mb-3">
+        @if (currentTutorial.published) {
+        <button
+          class="btn btn-primary"
+          (click)="updatePublished(false)"
+          [disabled]="loadingPublish"
+        >
+          <span
+            *ngIf="loadingPublish"
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          UnPublish
+        </button>
+        } @else {
+        <button
+          class="btn btn-primary"
+          (click)="updatePublished(true)"
+          [disabled]="loadingPublish"
+        >
+          <span
+            *ngIf="loadingPublish"
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          Publish
+        </button>
+        }
+
+        <button
+          class="btn btn-danger"
+          (click)="deleteTutorial()"
+          [disabled]="loadingDelete"
+        >
+          <span
+            *ngIf="loadingDelete"
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          Delete
+        </button>
+
+        <button
+          type="submit"
+          class="btn btn-success"
+          (click)="updateTutorial()"
+          [disabled]="loadingUpdate"
+        >
+          <span
+            *ngIf="loadingUpdate"
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          Update
+        </button>
       </div>
+      <p class="text-success">{{ message }}</p>
     </div>
-  } @else {
-    <div class="card border-info mb-3">
-      <div class="card-body">
-        <p class="text-info mb-0">Please click on a Post...</p>
-      </div>
-    </div>
-  }
+  </div>
+</div>
 } @else {
-  @if (currentTutorial.id) {
-    <div class="card mb-3">
-      <div class="card-header">
-        <h4>Edit Post</h4>
-      </div>
-      <div class="card-body">
-        <div class="edit-form">
-          <form>
-            <div class="form-group mb-3">
-              <label for="title">Title</label>
-              <input
-                type="text"
-                class="form-control"
-                id="title"
-                [(ngModel)]="currentTutorial.title"
-                name="title"
-              />
-            </div>
-            <div class="form-group mb-3">
-              <label for="description">Description</label>
-              <input
-                type="text"
-                class="form-control"
-                id="description"
-                [(ngModel)]="currentTutorial.description"
-                name="description"
-              />
-            </div>
-
-            <div class="form-group mb-3">
-              <label><strong>Status:</strong></label>
-              {{ currentTutorial.published ? "Published" : "Pending" }}
-            </div>
-          </form>
-
-          <div class="d-flex flex-wrap gap-2 mb-3">
-            @if (currentTutorial.published) {
-              <button class="btn btn-primary" (click)="updatePublished(false)">
-                UnPublish
-              </button>
-            } @else {
-              <button class="btn btn-primary" (click)="updatePublished(true)">
-                Publish
-              </button>
-            }
-
-            <button class="btn btn-danger" (click)="deleteTutorial()">
-              Delete
-            </button>
-
-            <button
-              type="submit"
-              class="btn btn-success"
-              (click)="updateTutorial()"
-            >
-              Update
-            </button>
-          </div>
-          <p class="text-success">{{ message }}</p>
-        </div>
-      </div>
-    </div>
-  } @else {
-    <div class="card border-danger mt-3">
-      <div class="card-body">
-        <p class="text-danger mb-0">Cannot access this Post. Please try again later.</p>
-      </div>
-    </div>
-  }
-}
+<div class="card border-danger mt-3">
+  <div class="card-body">
+    <p class="text-danger mb-0">Post Loading...</p>
+  </div>
+</div>
+} }

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Tutorial } from '../models/tutorial.model';
 
-const baseUrl = 'http://docker.io/oluwathanks/spring-boot-app/api/tutorials';
+const baseUrl = 'https://spring-boot-app-kzgt.onrender.com/api/tutorials';
 
 @Injectable({
   providedIn: 'root',

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.oyewoleseun.spring.datajpa.model.Tutorial;
 import com.oyewoleseun.spring.datajpa.repository.TutorialRepository;
 
+@CrossOrigin(origins = {"http://localhost:8081", "https://spring-boot-app-kzgt.onrender.com"})
 @RestController
 @RequestMapping("/api")
 public class TutorialController {

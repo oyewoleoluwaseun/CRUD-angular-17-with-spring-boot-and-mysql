@@ -12,6 +12,8 @@ export class TutorialsListComponent implements OnInit {
   currentTutorial: Tutorial = {};
   currentIndex = -1;
   title = '';
+  loadingSearch = false; // Spinner for search button
+  loadingPosts = true; // Spinner for loading posts list
 
   constructor(private tutorialService: TutorialService) {}
 
@@ -20,12 +22,17 @@ export class TutorialsListComponent implements OnInit {
   }
 
   retrieveTutorials(): void {
+    this.loadingPosts = true; // Start the spinner when retrieving posts
     this.tutorialService.getAll().subscribe({
       next: (data) => {
         this.tutorials = data;
+        this.loadingPosts = false; // Stop the spinner when data is received
         console.log(data);
       },
-      error: (e) => console.error(e)
+      error: (e) => {
+        console.error(e);
+        this.loadingPosts = false; // Stop the spinner even if there's an error
+      },
     });
   }
 
@@ -46,20 +53,25 @@ export class TutorialsListComponent implements OnInit {
         console.log(res);
         this.refreshList();
       },
-      error: (e) => console.error(e)
+      error: (e) => console.error(e),
     });
   }
 
   searchTitle(): void {
+    this.loadingSearch = true; // Start spinner and disable button
     this.currentTutorial = {};
     this.currentIndex = -1;
 
     this.tutorialService.findByTitle(this.title).subscribe({
       next: (data) => {
         this.tutorials = data;
+        this.loadingSearch = false; // Stop spinner and enable button
         console.log(data);
       },
-      error: (e) => console.error(e)
+      error: (e) => {
+        console.error(e);
+        this.loadingSearch = false; // Stop spinner and enable button even if there's an error
+      },
     });
   }
 }
