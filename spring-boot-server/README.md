@@ -1,127 +1,198 @@
-# Spring Boot JPA MySQL - Building Rest CRUD API example
 
-For more detail, please visit:
+# CRUD Application with Angular, Spring Boot, and MySQL
 
-> [Spring Boot JPA + MySQL - Building Rest CRUD API example](https://www.oyewoleseun.com/spring-boot-jpa-crud-rest-api/)
+This is a CRUD (Create, Read, Update, Delete) web application built using Angular for the frontend, Spring Boot for the backend, and MySQL for database management. This application demonstrates how to perform basic CRUD operations, manage data, and connect the frontend with backend services.
 
-> [Spring Boot JPA + PostgreSQL - Building Rest CRUD API example](https://www.oyewoleseun.com/spring-boot-postgresql-example/)
+## Table of Contents
 
-Front-end that works well with this Back-end
+- [Demo](#demo)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Project Setup](#project-setup)
+  - [Backend Setup (Spring Boot)](#backend-setup-spring-boot)
+  - [Frontend Setup (Angular)](#frontend-setup-angular)
+  - [Database Setup (MySQL)](#database-setup-mysql)
+- [Endpoints](#endpoints)
+- [Running Tests](#running-tests)
+- [Deployment](#deployment)
+- [Screenshots](#screenshots)
+- [Contributing](#contributing)
+- [License](#license)
 
-> [Angular 8](https://www.oyewoleseun.com/angular-crud-app/) / [Angular 10](https://www.oyewoleseun.com/angular-10-crud-app/) / [Angular 11](https://www.oyewoleseun.com/angular-11-crud-app/) / [Angular 12](https://www.oyewoleseun.com/angular-12-crud-app/) / [Angular 13](https://www.oyewoleseun.com/angular-13-crud-example/) / [Angular 14](https://www.oyewoleseun.com/angular-14-crud-example/) / [Angular 15](https://www.oyewoleseun.com/angular-15-crud-example/) / [Angular 16](https://www.oyewoleseun.com/angular-16-crud-example/) / [Angular 17 Client](https://www.oyewoleseun.com/angular-17-crud-example/)
+## Demo
 
-> [Vue 2 Client](https://www.oyewoleseun.com/vue-js-crud-app/) / [Vue 3 Client](https://www.oyewoleseun.com/vue-3-crud/) / [Vuetify Client](https://www.oyewoleseun.com/vuetify-data-table-example/)
+> [CRUD Project Website](https://spring-boot-app-kzgt.onrender.com)
 
-> [React Client](https://www.oyewoleseun.com/react-hooks-crud-axios-api/) / [React Redux Client](https://www.oyewoleseun.com/redux-toolkit-crud-react-hooks/)
+## Features
 
-More Practice:
+- **Create**: Users can add new posts.
+- **Read**: Users can view the list of all posts.
+- **Update**: Users can edit existing posts.
+- **Delete**: Users can delete single or all posts.
+- **Search**: Users can search posts by title.
+- **Publish/Unpublish**: Ability to publish or unpublish posts.
 
-> [Spring Boot Validate Request Body](https://www.oyewoleseun.com/spring-boot-validate-request-body/)
+## Technologies Used
 
-> [Spring Boot File upload example with Multipart File](https://www.oyewoleseun.com/spring-boot-file-upload/)
+### Frontend (Angular)
 
-> [Spring Boot Pagination & Filter example | Spring JPA, Pageable](https://www.oyewoleseun.com/spring-boot-pagination-filter-jpa-pageable/)
+- **Angular 17**: Modern web development framework for building single-page applications.
+- **Bootstrap**: Responsive layout and UI components for design.
+- **RxJS**: Reactive programming for asynchronous data handling.
 
-> [Spring Data JPA Sort/Order by multiple Columns | Spring Boot](https://www.oyewoleseun.com/spring-data-sort-multiple-columns/)
+### Backend (Spring Boot)
 
-> [Spring Boot Repository Unit Test with @DataJpaTest](https://www.oyewoleseun.com/spring-boot-unit-test-jpa-repo-datajpatest/)
+- **Spring Boot 3.1.5**: Backend framework for creating RESTful APIs.
+- **Spring Data JPA**: Simplifies database interaction with MySQL.
+- **Hibernate ORM**: Framework for mapping Java objects to database tables.
+- **MySQL**: Relational database for data persistence.
 
-> [Spring Boot Rest Controller Unit Test with @WebMvcTest](https://www.oyewoleseun.com/spring-boot-webmvctest/)
+### Database
 
-> Cache the result: [Spring Boot Redis Cache example](https://www.oyewoleseun.com/spring-boot-redis-cache-example/)
+- **MySQL 8.0**: Stores the data for the application, which includes posts data.
 
-> Documentation: [Spring Boot with Swagger 3 example](https://www.oyewoleseun.com/spring-boot-swagger-3/)
+## Project Setup
 
-> Reactive Rest API: [Spring Boot WebFlux example](https://www.oyewoleseun.com/spring-boot-webflux-rest-api/)
+### Prerequisites
 
-> [Deploy Spring Boot App on AWS – Elastic Beanstalk](https://www.oyewoleseun.com/deploy-spring-boot-aws-eb/)
+Before you begin, ensure you have installed the following:
 
-Exception Handling:
+- **Node.js** (v16 or later)
+- **Angular CLI** (v12 or later)
+- **MySQL** (v8.0 or later)
+- **Maven** (v3.6 or later)
 
-> [Spring Boot @ControllerAdvice & @ExceptionHandler example](https://www.oyewoleseun.com/spring-boot-controlleradvice-exceptionhandler/)
+### Backend Setup (Spring Boot)
 
-> [@RestControllerAdvice example in Spring Boot](https://www.oyewoleseun.com/spring-boot-restcontrolleradvice/)
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/oyewoleoluwaseun/CRUD-angular-17-with-spring-boot-and-mysql]
+   ```
 
-Associations:
+2. Navigate to the backend directory:
+   ```bash
+   cd backend
+   ```
 
-> [Spring Boot One To One example with Spring JPA, Hibernate](https://www.oyewoleseun.com/jpa-one-to-one/)
+3. Configure MySQL by updating the `application.properties` file located in `src/main/resources/` with your MySQL database credentials:
+   ```properties
+   spring.datasource.url=jdbc:mysql://localhost:3306/testdb
+   spring.datasource.username=your_username
+   spring.datasource.password=your_password
+   spring.jpa.hibernate.ddl-auto=update
+   spring.jpa.show-sql=true
+   ```
 
-> [Spring Boot One To Many example with Spring JPA, Hibernate](https://www.oyewoleseun.com/jpa-one-to-many/)
+4. Build and run the backend service using Maven:
+   ```bash
+   mvn clean install
+   mvn spring-boot:run
+   ```
+   The backend service will start at [http://localhost:8080](http://localhost:8080).
 
-> [Spring Boot Many To Many example with Spring JPA, Hibernate](https://www.oyewoleseun.com/jpa-many-to-many/)
+### Frontend Setup (Angular)
 
-Security:
+1. Navigate to the frontend directory:
+   ```bash
+   cd angular-frontend
+   ```
 
-> [Spring Boot + Spring Security JWT Authentication & Authorization](https://www.oyewoleseun.com/spring-boot-jwt-authentication/)
+2. Install the required Node modules:
+   ```bash
+   npm install
+   ```
 
-Deployment:
+3. Run the Angular development server:
+   ```bash
+   ng serve --port 8081
+   ```
+   The application will be accessible at [http://localhost:8081](http://localhost:8081).
 
-> [Deploy Spring Boot App on AWS – Elastic Beanstalk](https://oyewoleseun.com/deploy-spring-boot-aws-eb/)
+### Database Setup (MySQL)
 
-> [Docker Compose Spring Boot and MySQL example](https://www.oyewoleseun.com/docker-compose-spring-boot-mysql/)
+1. Create a MySQL database by running the following command in your MySQL CLI or MySQL Workbench:
+   ```sql
+   CREATE DATABASE testdb;
+   ```
 
-Fullstack:
+2. Ensure that the MySQL server is running on localhost with the appropriate username and password.
 
-> [Vue.js + Spring Boot + MySQL example](https://oyewoleseun.com/spring-boot-vue-js-mysql/)
+## Endpoints
 
-> [Vue.js + Spring Boot + PostgreSQL example](https://oyewoleseun.com/spring-boot-vue-js-postgresql/)
+REST API Endpoints for CRUD Operations:
 
-> [Angular 10 + Spring Boot + MySQL example](https://www.oyewoleseun.com/angular-10-spring-boot-crud/)
+- `GET /api/tutorials`: Retrieve all posts.
+- `GET /api/tutorials/{id}`: Retrieve a post by ID.
+- `POST /api/tutorials`: Create a new post.
+- `PUT /api/tutorials/{id}`: Update an existing post by ID.
+- `DELETE /api/tutorials/{id}`: Delete a post by ID.
+- `DELETE /api/tutorials`: Delete all posts.
+- `GET /api/tutorials/published`: Retrieve all published posts.
+- `GET /api/tutorials?title={title}`: Search posts by title.
 
-> [Angular 11 + Spring Boot + MySQL example](https://www.oyewoleseun.com/angular-11-spring-boot-crud/)
+## Running Tests
 
-> [Angular 12 + Spring Boot + MySQL example](https://oyewoleseun.com/angular-12-spring-boot-mysql/)
+### Backend Tests
 
-> [Angular 13 + Spring Boot + MySQL example](https://www.oyewoleseun.com/spring-boot-angular-13-mysql/)
+The backend includes unit tests using JUnit. To run the tests, execute:
 
-> [Angular 14 + Spring Boot + MySQL example](https://www.oyewoleseun.com/spring-boot-angular-14-mysql/)
-
-> [Angular 15 + Spring Boot + MySQL example](https://www.oyewoleseun.com/spring-boot-angular-15-mysql/)
-
-> [Angular 16 + Spring Boot + MySQL example](https://www.oyewoleseun.com/spring-boot-angular-16-mysql/)
-
-> [Angular 17 + Spring Boot + MySQL example](https://www.oyewoleseun.com/spring-boot-angular-17-mysql/)
-
-> [Angular 10 + Spring Boot + PostgreSQL example](https://www.oyewoleseun.com/angular-10-spring-boot-postgresql/)
-
-> [Angular 11 + Spring Boot + PostgreSQL example](https://www.oyewoleseun.com/angular-11-spring-boot-postgresql/)
-
-> [Angular 12 + Spring Boot + PostgreSQL example](https://oyewoleseun.com/angular-12-spring-boot-postgresql/)
-
-> [Angular 13 + Spring Boot + PostgreSQL example](https://www.oyewoleseun.com/spring-boot-angular-13-postgresql/)
-
-> [Angular 14 + Spring Boot + PostgreSQL example](https://www.oyewoleseun.com/spring-boot-angular-14-postgresql/)
-
-> [Angular 15 + Spring Boot + PostgreSQL example](https://www.oyewoleseun.com/spring-boot-angular-15-postgresql/)
-
-> [Angular 16 + Spring Boot + PostgreSQL example](https://www.oyewoleseun.com/spring-boot-angular-16-postgresql/)
-
-> [Angular 17 + Spring Boot + PostgreSQL example](https://www.oyewoleseun.com/spring-boot-angular-17-postgresql/)
-
-> [Angular 13 + Spring Boot + H2 Embedded Database example](https://www.oyewoleseun.com/spring-boot-angular-13-crud/)
-
-> [Angular 14 + Spring Boot + H2 Embedded Database example](https://www.oyewoleseun.com/spring-boot-angular-14-crud/)
-
-> [Angular 15 + Spring Boot + H2 Embedded Database example](https://www.oyewoleseun.com/spring-boot-angular-15-crud/)
-
-> [Angular 16 + Spring Boot + H2 Embedded Database example](https://www.oyewoleseun.com/spring-boot-angular-16-crud/)
-
-> [Angular 17 + Spring Boot + H2 Embedded Database example](https://www.oyewoleseun.com/spring-boot-angular-17-crud/)
-
-> [React + Spring Boot + MySQL example](https://www.oyewoleseun.com/react-spring-boot-crud/)
-
-> [React + Spring Boot + PostgreSQL example](https://www.oyewoleseun.com/spring-boot-react-postgresql/)
-
-Run both Back-end & Front-end in one place:
-
-> [Integrate Angular with Spring Boot Rest API](https://www.oyewoleseun.com/integrate-angular-spring-boot/)
-
-> [Integrate React.js with Spring Boot Rest API](https://www.oyewoleseun.com/integrate-reactjs-spring-boot/)
-
-> [Integrate Vue.js with Spring Boot Rest API](https://www.oyewoleseun.com/integrate-vue-spring-boot/)
-
-## Run Spring Boot application
-
+```bash
+mvn test
 ```
-mvn spring-boot:run
+
+### Frontend Tests
+
+To run the Angular unit tests (using Jasmine and Karma), execute:
+
+```bash
+ng test
 ```
+
+## Deployment
+
+### Deploying the Backend (Spring Boot)
+
+You can deploy the Spring Boot backend using:
+
+- **Docker**: Create a Dockerfile, build the image, and deploy it to a cloud provider such as Render or Heroku.
+- **Clever Cloud** or other cloud platforms that support Java.
+
+### Deploying the Frontend (Angular)
+
+You can host Angular on platforms like Vercel, Netlify, or your custom server. To deploy:
+
+1. Build the Angular project for production:
+   ```bash
+   ng build --prod
+   ```
+
+2. Upload the generated `dist/` folder to your hosting platform.
+
+## Screenshots
+![Post List Page](PostListPage.png)
+![Post Details Page](PostDetailsPage.png)
+
+
+
+## Contributing
+
+If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
+
+1. Fork the repository.
+2. Create your feature branch:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m 'Add some feature'
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature-name
+   ```
+5. Submit a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

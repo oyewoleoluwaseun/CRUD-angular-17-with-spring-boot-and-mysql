@@ -1,79 +1,198 @@
-# Angular 17 example project: CRUD with Rest API
 
-Build an Angular 17 CRUD example App to consume Rest APIs, display, modify & search data.
+# CRUD Application with Angular, Spring Boot, and MySQL
 
-Tutorial Application in that:
+This is a CRUD (Create, Read, Update, Delete) web application built using Angular for the frontend, Spring Boot for the backend, and MySQL for database management. This application demonstrates how to perform basic CRUD operations, manage data, and connect the frontend with backend services.
 
-- Each Tutorial has id, title, description, published status.
-- We can create, retrieve, update, delete Tutorials.
-- There is a Search bar for finding Tutorials by title.
+## Table of Contents
 
-![angular-17-crud-example](angular-17-crud-example.png)
+- [Demo](#demo)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Project Setup](#project-setup)
+  - [Backend Setup (Spring Boot)](#backend-setup-spring-boot)
+  - [Frontend Setup (Angular)](#frontend-setup-angular)
+  - [Database Setup (MySQL)](#database-setup-mysql)
+- [Endpoints](#endpoints)
+- [Running Tests](#running-tests)
+- [Deployment](#deployment)
+- [Screenshots](#screenshots)
+- [Contributing](#contributing)
+- [License](#license)
 
-Run `ng serve --port 8081` for a dev server. Navigate to `http://localhost:8081/`. The app will automatically reload if you change any of the source files.
+## Demo
 
-For instruction, please visit:
+> [CRUD Project Website](https://spring-boot-app-kzgt.onrender.com)
 
-> [Angular 17 CRUD example with Rest API](https://www.oyewoleseun.com/angular-17-crud-example/)
+## Features
 
-More Practice:
+- **Create**: Users can add new posts.
+- **Read**: Users can view the list of all posts.
+- **Update**: Users can edit existing posts.
+- **Delete**: Users can delete single or all posts.
+- **Search**: Users can search posts by title.
+- **Publish/Unpublish**: Ability to publish or unpublish posts.
 
-> [Angular 17 Pagination example](https://www.oyewoleseun.com/angular-17-pagination-ngx/)
+## Technologies Used
 
-> [Angular 17 JWT Authentication & Authorization example](https://www.oyewoleseun.com/angular-17-jwt-auth/)
+### Frontend (Angular)
 
-> [Angular 17 File upload example with Progress bar](https://www.oyewoleseun.com/angular-17-file-upload/)
+- **Angular 17**: Modern web development framework for building single-page applications.
+- **Bootstrap**: Responsive layout and UI components for design.
+- **RxJS**: Reactive programming for asynchronous data handling.
 
-> [Angular 17 Form Validation example](https://www.oyewoleseun.com/angular-17-form-validation/)
+### Backend (Spring Boot)
 
-Fullstack with Node:
+- **Spring Boot 3.1.5**: Backend framework for creating RESTful APIs.
+- **Spring Data JPA**: Simplifies database interaction with MySQL.
+- **Hibernate ORM**: Framework for mapping Java objects to database tables.
+- **MySQL**: Relational database for data persistence.
 
-> [Angular 17 + Node Express + MySQL example](https://www.oyewoleseun.com/angular-17-node-js-express-mysql/)
+### Database
 
-> [Angular 17 + Node Express + PostgreSQL example](https://www.oyewoleseun.com/angular-17-node-js-express-postgresql/)
+- **MySQL 8.0**: Stores the data for the application, which includes posts data.
 
-> [Angular 17 + Node Express + MongoDB example](https://www.oyewoleseun.com/angular-17-node-js-express-mongodb/)
+## Project Setup
 
-> [Angular 17 + Node Express: File upload example](https://www.oyewoleseun.com/angular-17-node-express-file-upload/)
+### Prerequisites
 
-Fullstack with Spring Boot:
+Before you begin, ensure you have installed the following:
 
-> [Angular 17 + Spring Boot example](https://www.oyewoleseun.com/spring-boot-angular-17-crud/)
+- **Node.js** (v16 or later)
+- **Angular CLI** (v12 or later)
+- **MySQL** (v8.0 or later)
+- **Maven** (v3.6 or later)
 
-> [Angular 17 + Spring Boot + MySQL example](https://www.oyewoleseun.com/spring-boot-angular-17-mysql/)
+### Backend Setup (Spring Boot)
 
-> [Angular 17 + Spring Boot + PostgreSQL example](https://www.oyewoleseun.com/spring-boot-angular-17-postgresql/)
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/oyewoleoluwaseun/CRUD-angular-17-with-spring-boot-and-mysql]
+   ```
 
-> [Angular 17 + Spring Boot + MongoDB example](https://www.oyewoleseun.com/spring-boot-angular-17-mongodb/)
+2. Navigate to the backend directory:
+   ```bash
+   cd backend
+   ```
 
-> [Angular 17 + Spring Boot: File upload example](https://www.oyewoleseun.com/angular-17-spring-boot-file-upload/)
+3. Configure MySQL by updating the `application.properties` file located in `src/main/resources/` with your MySQL database credentials:
+   ```properties
+   spring.datasource.url=jdbc:mysql://localhost:3306/testdb
+   spring.datasource.username=your_username
+   spring.datasource.password=your_password
+   spring.jpa.hibernate.ddl-auto=update
+   spring.jpa.show-sql=true
+   ```
 
-Fullstack with Django:
+4. Build and run the backend service using Maven:
+   ```bash
+   mvn clean install
+   mvn spring-boot:run
+   ```
+   The backend service will start at [http://localhost:8080](http://localhost:8080).
 
-> [Angular + Django example](https://www.oyewoleseun.com/django-angular-13-crud-rest-framework/)
+### Frontend Setup (Angular)
 
-> [Angular + Django + MySQL](https://www.oyewoleseun.com/django-angular-mysql/)
+1. Navigate to the frontend directory:
+   ```bash
+   cd angular-frontend
+   ```
 
-> [Angular + Django + PostgreSQL](https://www.oyewoleseun.com/django-angular-postgresql/)
+2. Install the required Node modules:
+   ```bash
+   npm install
+   ```
 
-> [Angular + Django + MongoDB](https://www.oyewoleseun.com/django-angular-mongodb/)
+3. Run the Angular development server:
+   ```bash
+   ng serve --port 8081
+   ```
+   The application will be accessible at [http://localhost:8081](http://localhost:8081).
 
-Security:
+### Database Setup (MySQL)
 
-> [Angular 17 + Spring Boot: JWT Authentication and Authorization example](https://www.oyewoleseun.com/angular-17-spring-boot-jwt-auth/)
+1. Create a MySQL database by running the following command in your MySQL CLI or MySQL Workbench:
+   ```sql
+   CREATE DATABASE testdb;
+   ```
 
-> [Angular 17 + Node.js Express: JWT Authentication and Authorization example](https://www.oyewoleseun.com/node-js-angular-17-jwt-auth/)
+2. Ensure that the MySQL server is running on localhost with the appropriate username and password.
 
-Serverless with Firebase:
+## Endpoints
 
-> [Angular 17 Firebase CRUD with Realtime DataBase](https://www.oyewoleseun.com/angular-17-firebase-crud/)
+REST API Endpoints for CRUD Operations:
 
-> [Angular 17 Firestore CRUD example](https://www.oyewoleseun.com/angular-17-firestore-crud/)
+- `GET /api/tutorials`: Retrieve all posts.
+- `GET /api/tutorials/{id}`: Retrieve a post by ID.
+- `POST /api/tutorials`: Create a new post.
+- `PUT /api/tutorials/{id}`: Update an existing post by ID.
+- `DELETE /api/tutorials/{id}`: Delete a post by ID.
+- `DELETE /api/tutorials`: Delete all posts.
+- `GET /api/tutorials/published`: Retrieve all published posts.
+- `GET /api/tutorials?title={title}`: Search posts by title.
 
-> [Angular 17 Firebase Storage: File Upload/Display/Delete example](https://www.oyewoleseun.com/angular-17-firebase-storage/)
+## Running Tests
 
-Integration (run back-end & front-end on same server/port)
+### Backend Tests
 
-> [How to integrate Angular with Node Restful Services](https://oyewoleseun.com/integrate-angular-12-node-js/)
+The backend includes unit tests using JUnit. To run the tests, execute:
 
-> [How to Integrate Angular with Spring Boot Rest API](https://oyewoleseun.com/integrate-angular-12-spring-boot/)
+```bash
+mvn test
+```
+
+### Frontend Tests
+
+To run the Angular unit tests (using Jasmine and Karma), execute:
+
+```bash
+ng test
+```
+
+## Deployment
+
+### Deploying the Backend (Spring Boot)
+
+You can deploy the Spring Boot backend using:
+
+- **Docker**: Create a Dockerfile, build the image, and deploy it to a cloud provider such as Render or Heroku.
+- **Clever Cloud** or other cloud platforms that support Java.
+
+### Deploying the Frontend (Angular)
+
+You can host Angular on platforms like Vercel, Netlify, or your custom server. To deploy:
+
+1. Build the Angular project for production:
+   ```bash
+   ng build --prod
+   ```
+
+2. Upload the generated `dist/` folder to your hosting platform.
+
+## Screenshots
+![Post List Page](PostListPage.png)
+![Post Details Page](PostDetailsPage.png)
+
+
+
+## Contributing
+
+If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
+
+1. Fork the repository.
+2. Create your feature branch:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m 'Add some feature'
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature-name
+   ```
+5. Submit a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
